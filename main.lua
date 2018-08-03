@@ -18,6 +18,10 @@ local start = love.timer.getTime()
 local delay = 0
 local END_BEAT_PAUSE = 0.6
 function love.update(dt)
+    if love.keyboard.isDown("escape") then
+        love.event.quit()
+    end
+
     if not track:isPlaying() then
         if delay > END_BEAT_PAUSE then
             track:play()
