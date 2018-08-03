@@ -14,9 +14,16 @@ function love.load()
     rotate = 0
 end
 
+local start = love.timer.getTime()
+local delay = 0
+local END_BEAT_PAUSE = 0.6
 function love.update(dt)
     if not track:isPlaying() then
-        track:play()
+        if delay > END_BEAT_PAUSE then
+            track:play()
+            delay = 0
+        end
+        delay = delay + dt
     end
     rotate = rotate + dt
 end
